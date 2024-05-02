@@ -2,6 +2,7 @@
 
 import { useClerk } from "@clerk/nextjs";
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 
 export default function AdminNavbar() {
@@ -10,23 +11,22 @@ export default function AdminNavbar() {
 
   return (
     <div className="px-3">
-      <div className="m-auto flex h-10 max-w-5xl items-center justify-between gap-2">
-        <Link href="/admin" className="font-semibold underline">
-          Admin Dashboard
-        </Link>
-        <div className="space-x-2">
-          <span className="font-semibold">
-            {user?.primaryEmailAddress?.emailAddress}
-          </span>
-          <button
+      <div className="m-auto mt-[20px] flex h-10 max-w-5xl items-center justify-between gap-2">
+        <span className="font-semibold">
+          {user?.primaryEmailAddress?.emailAddress}
+        </span>
+        <div className="flex items-center gap-2">
+          <Button asChild>
+            <Link href="/jobs/new">Post a job</Link>
+          </Button>
+          {/* <Button
             onClick={async () => {
               await signOut();
               router.push("/");
             }}
-            className="underline"
           >
             Log out
-          </button>
+          </Button> */}
         </div>
       </div>
     </div>

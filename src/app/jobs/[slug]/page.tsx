@@ -9,7 +9,8 @@ interface PageProps {
   params: { slug: string };
 }
 
-const getJob = cache(async (slug: string) => {
+
+const getJob = async (slug: string) => {
   const job = await prisma.job.findUnique({
     where: { slug },
   });
@@ -17,7 +18,7 @@ const getJob = cache(async (slug: string) => {
   if (!job) notFound();
 
   return job;
-});
+};
 
 export async function generateStaticParams() {
   const jobs = await prisma.job.findMany({
@@ -55,13 +56,14 @@ export default async function Page({ params: { slug } }: PageProps) {
   return (
     <main className="m-auto my-10 flex max-w-5xl flex-col items-center gap-5 px-3 md:flex-row md:items-start">
       <JobPage job={job} />
-      <aside>
-        <Button asChild>
+      <div className="flex flex-col gap-2">
+        <Button asChild className="bg-indigo-400">
           <a href={applicationLink} className="w-40 md:w-fit">
             Apply now
           </a>
         </Button>
-      </aside>
+        <Button className="w-40 bg-green-300 md:w-fit">Save Drive</Button>
+      </div>
     </main>
   );
 }

@@ -31,3 +31,21 @@ model Job {
 
   @@map("jobs")
 }
+
+
+model Student {
+  id               Int      @id @default(autoincrement())
+  name             String   
+  enroll           String   @unique
+  password         String
+  email            String
+  year             Int
+  branch           String
+  cgpa             Decimal
+  matric           Decimal
+  inter            Decimal
+  backlogs         Int
+  resumeLink       String
+  tier             Int @default(0)
+  @@map("students")
+}
